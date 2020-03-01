@@ -1,0 +1,3 @@
+Error Handling in C programs
+Although C does not provide direct support to error handling (or exception handling), there are ways through which error handling can be done in C. A programmer has to prevent errors at the first place and test return values from the functions.
+A lot of C function calls return a -1 or NULL in case of an error, so quick test on these return values are easily done with for instance an ‘if statement’. For example, In Socket Programming, the returned value of the functions like socket(), listen() etc. are checked to see if there is an error or not.

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+rm -f $1
+rm -f $1.o
+
+gcc -Wall -o $1 $1.c
+if [ $? -eq 0 ]
+then
+  ./$1
+else
+   echo 'COMPILATION ERROR'
+fi
