@@ -21,11 +21,12 @@ int main(void) {
          break;
       case 0: //filho
             write(STDOUT_FILENO,hello,strlen(hello));
-            exit(0);
+            exit( getpid() % 10);
       break;
       default: //pai
          wait(&status);
          write(STDOUT_FILENO,world,strlen(world));
+         
       }
 
 
