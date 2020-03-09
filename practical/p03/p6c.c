@@ -29,9 +29,9 @@ i==3
 */
 
 int main(void){
-   pid_t pid,childPid;
+   pid_t pid/*,childPid*/;
    int i, j;
-   int status;
+   //int status;
 
    printf("I'm process %d. My parent is %d.\n", getpid(),getppid());
 
@@ -44,7 +44,7 @@ int main(void){
       else if (pid == 0) {
          printf("I'm process %d. My parent is %d. I'm going to work for 1 second ...\n",getpid(),getppid());
          sleep(1); // simulando o trabalho do filho
-         //printf("I'm process %d. My parent is %d. I finished my work\n", getpid(),getppid());
+         printf("I'm process %d. My parent is %d. I finished my work\n", getpid(),getppid());
          //exit(0); // a eliminar na alinea c) //the loop is executed for each child process (see *)
       }
       else{// simulando o trabalho do pai
