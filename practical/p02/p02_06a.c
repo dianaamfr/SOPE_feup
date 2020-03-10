@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
       perror(argv[1]);
       exit(2);
    }
-   while ((direntp = readdir( dirp)) != NULL)
+   while ((direntp = readdir(dirp)) != NULL)
    {
       sprintf(name,"%s/%s",argv[1],direntp->d_name); // <----- NOTAR //guarda o path+nome
       // alternativa a chdir(); ex: anterior 
