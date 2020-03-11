@@ -49,7 +49,7 @@ int main(int argc, char *argv[], char *envp[])
    }
    else if (pid == 0){
       char * args[]={"ls","-laR",argv[1],NULL};
-      execv("ls",args);
+      execvp("ls",args);
       printf("Command not executed !\n");
       exit(1);
    }
