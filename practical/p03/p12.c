@@ -57,12 +57,7 @@ int main(int argc, char * argv[]){
 
          pid = fork();
 
-         if(pid > 0){ /*parent*/
-            childPid = waitpid(-1, &status, WNOHANG); //By default, waitpid() waits only for terminated children
-            if(childPid > 0) // no changes occured (0) / error (-1) not included
-               printf("I, parent (%d) , waited for (child pid = %d)\n",getpid(),childPid);   
-         }
-          else{ /*child*/
+          if(pid == 0){ /*child*/
             printf("Child %d-> copying file\n",getpid());
 
             if(chdir(srcDirName) == -1){
@@ -105,6 +100,13 @@ int main(int argc, char * argv[]){
             exit(0);
          }
       }
+   }
+
+   //I did not include this inside the loop because otherwise when there was nothing left in the directory to
+   // copy the loop would finish before the parent process could wait for the last processes
+   while((childPid = waitpid(-1, &status,WNOHANG)) > -1){ //while there are children processes executing
+      if(childPid != 0) //if 0 then there are still children processes but none of them has finished yet
+         printf("I, parent (%d) , waited for (child pid = %d)\n",getpid(),childPid); 
    }
 
    closedir(srcDir);
