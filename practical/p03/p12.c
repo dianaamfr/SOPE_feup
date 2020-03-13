@@ -58,18 +58,18 @@ int main(int argc, char * argv[]){
          pid = fork();
 
          if(pid > 0){ /*parent*/
-            childPid = wait(&status);
-            printf("In parent (%d) -> File copied (child pid = %d)\n",getpid(),childPid);
-            close(srcFd);
-            close(destFd);
-            
+            childPid = waitpid(-1, &status, WNOHANG); //By default, waitpid() waits only for terminated children
+            if(childPid > 0) // no changes occured (0) / error (-1) not included
+               printf("I, parent (%d) , waited for (child pid = %d)\n",getpid(),childPid);   
+         }
+          else{ /*child*/
+            printf("Child %d-> copying file\n",getpid());
+
             if(chdir(srcDirName) == -1){
                perror(srcDirName); 
                return 6;
             }
-         }
-          else{ /*child*/
-            printf("Child %d-> copying file\n",getpid());
+
             srcFd = open(dirEntry->d_name,O_RDONLY);
             if(srcFd == -1){
                perror(dirEntry->d_name); 
@@ -99,10 +99,16 @@ int main(int argc, char * argv[]){
                return 0;
             }
 
+            close(srcFd);
+            close(destFd);
+
+            exit(0);
          }
       }
    }
 
+   closedir(srcDir);
+   closedir(destDir);
 
    return 0;
 }
