@@ -103,7 +103,7 @@ int main(int argc, char * argv[]){
    }
 
    //I did not include this inside the loop because otherwise when there was nothing left in the directory to
-   // copy the loop would finish before the parent process could wait for the last processes
+   // copy the loop would finish before the parent process could wait for the last processes that copied the last files
    while((childPid = waitpid(-1, &status,WNOHANG)) > -1){ //while there are children processes executing
       if(childPid != 0) //if 0 then there are still children processes but none of them has finished yet
          printf("I, parent (%d) , waited for (child pid = %d)\n",getpid(),childPid); 
