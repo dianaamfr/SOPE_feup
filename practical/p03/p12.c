@@ -32,7 +32,7 @@ int main(int argc, char * argv[]){
       perror(argv[1]);
       return 2;
    }
-   if((destDir = opendir(argv[1])) == NULL){
+   if((destDir = opendir(argv[2])) == NULL){
       closedir(srcDir);
       perror(argv[2]);
       return 3;

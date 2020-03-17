@@ -20,8 +20,7 @@ int main(int argc, char *argv[], char *envp[])
       if (WIFEXITED(status)) //avaliada como verdadeira se o filho terminou normalmente
          printf("normal termination, exit status = %d\n", WEXITSTATUS(status)); 
       else if (WIFSIGNALED(status)){//verdadeira se o filho terminou anormalmente,porque recebeu um sinal que não tratou
-         printf("normal termination, exit status = %d\n", WEXITSTATUS(status));
-         printf("abnormal termination, signal number = %d\n",WTERMSIG(status));
+         printf("abnormal termination, , exit status = %d\n, signal number = %d\n",WEXITSTATUS(status),WTERMSIG(status));
       }
    }
    else if (pid == 0){

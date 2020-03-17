@@ -7,17 +7,17 @@
 
 void childhandler(int signo);
 int delay;
+id_t childPid;
 
 int main(int argc, char *argv[])
 {
    pid_t pid;
-   int status;
-   pid_t childPid;
    signal(SIGCHLD, childhandler);
 
    pid = fork();
    
    if (pid == 0){/* child */
+      childPid = getpid();
       execvp(argv[2], &argv[2]);
       printf("exec error\n");
    } 
@@ -26,7 +26,6 @@ int main(int argc, char *argv[])
       sscanf(argv[1], "%d", &delay); /* read delay from command line */
       sleep(delay);
       printf("Program %s exceeded limit of %d seconds!\n", argv[2], delay);
-      childPid = waitpid(-1,&status,WNOHANG);
       kill(childPid, SIGKILL);
    }
 
