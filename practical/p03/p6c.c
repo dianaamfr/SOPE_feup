@@ -50,8 +50,8 @@ int main(void){
       else{// simulando o trabalho do pai
          for (j=1; j<=10; j++) {
             sleep(1);
-            childPid = waitpid(-1,&status,WNOHANG);
-           /*childPid = wait(&status);  Without waitpid and WNOHANG the wait call would block the parent because the children never exit (no children would ever be waiting to be noticed by the parent*/
+            //childPid = waitpid(-1,&status,WNOHANG);
+            /*childPid = wait(&status); */
             printf("father working ...\n");
          }
       }
