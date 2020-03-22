@@ -29,9 +29,9 @@ i==3
 */
 
 int main(void){
-   pid_t pid/*,childPid*/;
+   pid_t pid,childPid;
    int i, j;
-   //int status;
+   int status;
 
    printf("I'm process %d. My parent is %d.\n", getpid(),getppid());
 
@@ -50,15 +50,8 @@ int main(void){
       else{// simulando o trabalho do pai
          for (j=1; j<=10; j++) {
             sleep(1);
-            /*childPid = waitpid(-1,&status,WNOHANG);
-            if (childPid < 0) //A value of -1 is returned in case of error
-            {
-               perror ("waitpid");
-               break;
-            }
-            else if (childPid == 0) break;//If there are child processes but none of them is waiting to be noticed, waitpid will block until one is. 
-            //However, if the WNOHANG option was specified, waitpid will return zero instead of blocking.
-            else printf("Waited for %d.\n",childPid); //The return value is normally the process ID of the child process whose status is reported*/
+            childPid = waitpid(-1,&status,WNOHANG);
+           /*childPid = wait(&status);  Without waitpid and WNOHANG the wait call would block the parent because the children never exit (no children would ever be waiting to be noticed by the parent*/
             printf("father working ...\n");
          }
       }
