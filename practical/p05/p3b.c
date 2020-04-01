@@ -45,6 +45,10 @@ int main(int argc, char *argv[])
       perror("Error calling exec!\n");
 		exit(1);   
    }
+   else{ //error
+      fprintf(stderr,"Fork error!\n");
+      exit(1);
+   }
 
    close(fd[WRITE]);
    exit(0);
