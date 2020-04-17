@@ -63,10 +63,12 @@ int main(){
          
       }
 
-      printf("Request another operation (Y/N) ?");
-      char ans = getchar();
-      if(ans == 'N' || ans == 'n')
-         break;
+      if(clientData.operands[0] != 0 || clientData.operands[1] != 0){
+         printf("Request another operation (Y/N) ?");
+         char ans = getchar();
+         if(ans == 'N' || ans == 'n')
+            break;
+      }
 
    } while(clientData.operands[0] != 0 || clientData.operands[1] != 0);
 
