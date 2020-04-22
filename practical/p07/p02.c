@@ -1,3 +1,4 @@
+// PROGRAMA p02.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,15 +7,18 @@
 #define STDERR 2
 
 int n = 50000;
+pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER; // mutex p/a sec.critica
 
 void * thrfunc(void * arg)
 {
     int i = 0;
     fprintf(stderr, "Starting thread %s\n", (char *) arg);
     while (n > 0) {
-        n--;
-        i++;
-        write(STDERR,arg,1);
+      pthread_mutex_lock(&mut);
+      n--;
+      i++;
+      pthread_mutex_unlock(&mut);
+      write(STDERR,arg,1);
     }
 
     void * ret = malloc(sizeof(int));
