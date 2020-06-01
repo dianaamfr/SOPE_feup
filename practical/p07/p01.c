@@ -18,6 +18,7 @@ void *fill(void *nr){
    while (1) {
       pthread_mutex_lock(&mut);
 
+      // We have finished counting already
       if (pos >= npos) {
          pthread_mutex_unlock(&mut);
          return NULL;
@@ -35,7 +36,7 @@ void *verify(void *arg)
 {
    int k;
    
-   for (k=0; k<npos; k++){
+   for (k = 0; k < npos; k++){
       if (buf[k] != k) // detecta valores errados
          printf("ERROR: buf[%d] = %d\n", k, buf[k]);
    }

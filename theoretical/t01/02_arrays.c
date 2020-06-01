@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#define MAX_NAME_LENGTH 50 // avoid "magic numbers"
+#define MAX_NAME_LENGTH 9 // avoid "magic numbers"
 #define NUM_MONTHS 3
 
 //scanf
-/* int main()
+/*int main()
 {
     char name[MAX_NAME_LENGTH];
     int weight[NUM_MONTHS];
@@ -25,8 +25,8 @@
     //scanf("%[^\n]",name);
 
     //solution 2 - cleans buffer but doesn't accept spaces
-    // scanf("%s", name);
-    // while(getchar() != '\n');
+     scanf("%s", name);
+     while(getchar() != '\n');
 
     for (i = 0; i < NUM_MONTHS; i++)
     {
@@ -70,10 +70,11 @@ int main()
     for (i = 0; i < NUM_MONTHS; i++)
     {
         printf("weight[%d] ? ", i + 1);
-        if(scanf("%d", &weight[i]) != 1)
+        int n;
+        if((n = scanf("%d", &weight[i])) != 1)
         {   
+            printf("%d\n",n);
             perror("main"); // try with an invalid input; error detected?!
-            // scanf() has a return value ... look for its meaning
             fprintf(stderr,"Invalid input !\n");
             exit(1); // try with an invalid input; error detected?!
         }

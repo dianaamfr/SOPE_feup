@@ -20,7 +20,7 @@ int main()
 
     printf("b[] = a[] = \n");
     for (i = 0; i < MAX_LEN; i++)
-        printf("a[%d]=%d\n", i, b[i]);
+        printf("b[%d]=%d\n", i, b[i]);
 
     for (i = 0; i < MAX_LEN; i++)
         a[i] = i+5;
@@ -33,7 +33,7 @@ int main()
 
     printf("b[] = a[] = \n");
     for (i = 0; i < MAX_LEN; i++)
-        printf("a[%d]=%d\n", i, b[i]);
+        printf("b[%d]=%d\n", i, b[i]);
 
     return 0;
 }
