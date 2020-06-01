@@ -25,7 +25,7 @@ int main(){
    
    // Open shared memory region
    if((shmfd = shm_open(SHM_NAME, O_RDWR, 0600)) < 0){
-      perror("READER failure in shm_opne()");
+      perror("READER failure in shm_open()");
       exit(1);
    }
 
@@ -40,7 +40,7 @@ int main(){
       perror("READER failure in sem_open(sem1)");
       exit(3);
    }
-   if(sem2 = sem_open(SEM_NAME2, 0, 0600, 0)) == SEM_FAILED){
+   if((sem2 = sem_open(SEM_NAME2, 0, 0600, 0)) == SEM_FAILED){
       perror("READER failure in sem_open(sem2)");
       exit(4);
    }

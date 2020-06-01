@@ -23,7 +23,7 @@ int main(){
    
    // Create shared memory region
    if((shmfd = shm_open(SHM_NAME, O_CREAT|O_RDWR, 0600)) < 0){
-      perror("WRITER failure in shm_opne()");
+      perror("WRITER failure in shm_open()");
       exit(1);
    }
 
@@ -44,7 +44,7 @@ int main(){
       perror("WRITER failure in sem_open(sem1)");
       exit(4);
    }
-   if(sem2 = sem_open(SEM_NAME2, O_CREAT, 0600, 0)) == SEM_FAILED){
+   if((sem2 = sem_open(SEM_NAME2, O_CREAT, 0600, 0)) == SEM_FAILED){
       perror("WRITER failure in sem_open(sem2)");
       exit(5);
    }
